@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+<style>
+	* {
+		font-size: 30pt;
+		}
+</style>
+
+<script>
+   function mylotto(){
+      var lotto = new Array();
+      for(var a=0; a<6; a=a+1){
+        lotto[a] = Math.floor(Math.random()*45+1);
+        for(var j=0; j<a ; j=j+1) {
+          if(lotto[a]==lotto[j]){ a--; continue; }
+        }
+      }
+
+      lotto.sort(function(a,b){ return a-b;} );
+      for(var k=0; k<6; k++){
+        document.write(lotto[k], ' ');
+      }
+   }//end
+
+  //전역변수 
+    var num = 1;
+    var timer = 0;
+    var totalCount = 0;
+	var youCount = 0;
+	var comCount = 0;
+	var samCount = 0;
+	var flag = false;
+	var com = 0;
+   function myrotateImage(){
+		document.me.src ="./images/" +num + ".jpg";
+		num++;
+		if(num == 4){num = 1;}
+
+		document.computer.src = "./images/" +num + ".jpg";
+		timer = window.setTimeout("myrotateImage()", 200);		
+		flag = true;
+	}//end
+
+   function setting(num){
+	document.me.src='./images/'+num+'.jpg';
+            var com=Math.floor((Math.random()*3))+1;
+            // alert('컴퓨터 난수'+ com);
+            document.computer.src='./images/' + com+ '.jpg' ;
+            score(num, com);
+                    }
+                    
+        var totalCount = 0;                         //지역변수:안에서 변하는값  전역변수:고정값개념
+        function score(you,com){
+            totalCount = totalCount + 1;             //단항함수
+            //you 내껏2     com 컴껏 1
+            // document.getElementById('txtTo;tal').innerHTML = totalCount;
+            document.all.txtTotal.value=totalCount;
+            if(you==com){samCount=samCount+1; document.all.txtSam.value=samCount;}      //무승부
+
+            if((you==2&&com==1)||(you==3&&com==2)||(you==1&&com==3)){youCount=youCount+1; document.all.txtYou.value=youCount;  }     //본인승
+            if((you==1&&com==2)||(you==2&&com==3)||(you==3&&com==1)){comCount=comCount+1; document.all.txtCom.value=comCount;  }     //컴터승
+        } //end
+</script>
+</head>
+<body>
+    <h2 > 10testgame.html 가위, 바위, 보!!!</h2>
+    <button onclick="setting(1)">번호1</button>
+    <button onclick="setting(2)">번호2</button>
+    <button onclick="setting(3)">번호3</button><br>
+     <img src="./images/1.jpg" width="200" height="200" border="0" alt="" onclick="setting(1)"> </td>
+     <img src="./images/2.jpg" width="200" height="200" border="0" alt="" onclick="setting(2)"> </td>
+     <img src="./images/3.jpg" width="200" height="200" border="0" alt="" onclick="setting(3)"> </td>
+
+    <p></p>
+    <img src="images/ang7.jpg" width="200" height="200" border="0" alt="" name="me">
+    <img src="images/ang2.jpg" width="200" height="200" border="0" alt="" name="computer">
+    <p></p>
+    <input type="text" name="txtTotal"  id="txtTotal" size="2"  style="text-align:right" > 전
+    <input type="text" name="txtCom"   id="txtCom"    size="2"  style="text-align:right" > 패
+    <input type="text" name="txtYou" size="2"> 승
+	<input type="text" name="txtSam" size="2"> 무
+</body>
+</html>

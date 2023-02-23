@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+<style> *{font-size: 30pt;} </style>
+<script>
+    function myclear(){
+        document.getElementById("res").value='';                   //초기화
+    }
+    function mycal( ){
+      var isopchecked=false;
+      var oper=false;   //연산, -뺴기, *곱,  /몫
+      var su1=frm.num1.value;               //7
+      var su2=frm.num2.value;               //2
+
+    //   var asdf = document.frm.op.value;        ////이하두줄 동현 name=opdp value 값주기
+    //   total=eval(su1 + asdf + su2);  
+    //   document.frm.res.value=total;
+
+
+    for ( var i=0; i<frm.op.length; i++){
+        if(frm.op[i].checked){
+            oper=frm.op[i].id;
+            // alert('선택된 연산자 '+ oper);
+        // }else{alert('연산자를 확인 ㄱㄱ');
+        // }}
+    if (isopchecked==false){
+        alert('연산자를 확인하세요');
+        return;
+        }}
+    }  
+
+   
+    var first =parseInt(su1);                        //1선택지
+    var second =parseInt(su2);
+    // var hap=0, sub=0, gob=0, mok=0;                               //2선택지
+    // hap=first + second;
+    // sub=first - second;
+    // gob=first * second;
+    // mok=first / second;
+
+    if(oper==="add"){                                                             //2선택지                   
+        document.getElementById("res").value=eval(su1+ '+' +su2);           
+    }else if(oper==="sub"){
+        document.getElementById("res").value=eval(su1+ '-' +su2);
+    }else if(oper==="mul"){
+        document.getElementById("res").value=eval(su1+ '*' +su2);
+    }else if(oper==="div"){
+        document.getElementById("res").value=eval(su1+ '/' +su2);
+    }else{    }
+
+
+    // if(oper=="add"){document.getElementById("res").value=hap;}                          //1선택지
+    // else if(oper=="sub"){document.getElementById("res").value=sub;}
+    // else if(oper=="mul"){document.getElementById("res").value=gob;}
+    // else if(oper=="div"){document.getElementById("res").value=mok;}
+    // else{    }
+
+
+      
+      
+    
+}//end
+</script>
+</head>
+<body>
+    <h2>13testcal.html</h2>
+    <form name="frm">
+        숫자1 : <input type="text" name="num1" value="7"><br>
+        숫자2 : <input type="text" name="num2" value="2"><br>
+    
+        연산 :
+        <input type="radio" name="op" id="add" value="+" onchange="myclear()"><label for="add">+더하기</label>
+        <input type="radio" name="op" id="sub" onchange="myclear()" value="-"><label for="sub">-빼기</label>
+        <input type="radio" name="op" id="mul" onchange="myclear()" value="*"><label for="mul">*곱하기</label>
+        <input type="radio" name="op" id="div" onchange="myclear()" value="/"><label for="div">/몫</label>
+        <br>
+        결과 : 
+         <input type="text" id="res" name="res" readonly="readonly"><br>
+         <input type="button" value="사칙연산처리" onclick="mycal()">
+         <input type="button" value="reload"  onclick="location.reload();">
+         <input type="button" value="윈도우 닫기"   onclick="self.close()">
+    </form>
+</body>
+</html>
